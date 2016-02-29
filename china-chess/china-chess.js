@@ -22,28 +22,24 @@ ChinaChess.prototype = {
         boards.push({
           type: i,
           name: arr[i],
-          initPos: ct + i,
           pos: ct + i,
           owner: 0
         });
         boards.push({
           type: i,
           name: arr[i],
-          initPos: ct - i,
           pos: ct - i,
           owner: 0
         });
         boards.push({
           type: i,
           name: arr1[i],
-          initPos: this.count - 1 - ct - i,
           pos: this.count - 1 - ct - i,
           owner: 1
         });
         boards.push({
           type: i,
           name: arr1[i],
-          initPos: this.count - 1 - ct + i,
           pos: this.count - 1 - ct + i,
           owner: 1
         });
@@ -51,14 +47,12 @@ ChinaChess.prototype = {
         boards.push({
           type: i,
           name: arr[i],
-          initPos: ct,
           pos: ct,
           owner: 0
         });
         boards.push({
           type: i,
           name: arr1[i],
-          initPos: this.count - 1 - ct,
           pos: this.count - 1 - ct,
           owner: 1
         });
@@ -68,28 +62,24 @@ ChinaChess.prototype = {
     boards.push({
       type: 5,
       name: '炮',
-      initPos: ct - 3,
       pos: ct - 3,
       owner: 0
     });
     boards.push({
       type: 5,
       name: '炮',
-      initPos: ct + 3,
       pos: ct + 3,
       owner: 0
     });
     boards.push({
       type: 5,
       name: '炮',
-      initPos: this.count - 1 - ct + 3,
       pos: this.count - 1 - ct + 3,
       owner: 1
     });
     boards.push({
       type: 5,
       name: '炮',
-      initPos: this.count - 1 - ct - 3,
       pos: this.count - 1 - ct - 3,
       owner: 1
     });
@@ -99,28 +89,24 @@ ChinaChess.prototype = {
         boards.push({
           type: 6,
           name: '卒',
-          initPos: ct + i * 2,
           pos: ct + i * 2,
           owner: 0
         });
         boards.push({
           type: 6,
           name: '卒',
-          initPos: ct - i * 2,
           pos: ct - i * 2,
           owner: 0
         });
         boards.push({
           type: 6,
           name: '兵',
-          initPos: this.count - 1 - ct - i * 2,
           pos: this.count - 1 - ct - i * 2,
           owner: 1
         });
         boards.push({
           type: 6,
           name: '兵',
-          initPos: this.count - 1 - ct + i * 2,
           pos: this.count - 1 - ct + i * 2,
           owner: 1
         });
@@ -128,14 +114,12 @@ ChinaChess.prototype = {
         boards.push({
           type: 6,
           name: '卒',
-          initPos: ct,
           pos: ct,
           owner: 0
         });
         boards.push({
           type: 6,
           name: '兵',
-          initPos: this.count - 1 - ct,
           pos: this.count - 1 - ct,
           owner: 1
         });
