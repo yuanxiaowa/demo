@@ -123,8 +123,14 @@
   .current {
     outline: 1px solid #00f;
   }
+  
   .hide {
     display: none;
+  }
+  #restart {
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
   }
   </style>
 </head>
@@ -142,6 +148,7 @@
     </div>
     <div class="grid-href"></div>
     <div class="chess-container"></div>
+    <button id="restart">重新开始</button>
   </div>
   <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
   <script src="china-chess.js"></script>
@@ -152,26 +159,33 @@
   getGrids();
   getHref();
 
-  $(document).on('selectstart', function () {
+  $(document).on('selectstart', function() {
     return false;
   });
 
   $chessContainer.on('click', 'div', function() {
-    var $this = $(this);
-    var b = chess.click($this.index());
-    if (!b) {
-      console.log('移动失败');
+    if (chess.isStart) {
+      var $this = $(this);
+      var b = chess.click($this.index());
+      if (!b) {
+        console.log('移动失败');
+      }
     }
   });
   $gridHref.on('click', 'div', function() {
-    var b = chess.move($(this).index());
-    if (!b) {
-      console.log('移动失败');
+    if (chess.isStart) {
+      var b = chess.move($(this).index());
+      if (!b) {
+        console.log('移动失败');
+      }
     }
+  });
+  $('#restart').click(function () {
+    chess.restart();
   });
 
   var chess = new ChinaChess({
-    init: function () {
+    init: function() {
       for (var i = 0; i < this.boards.length; i++) {
         var item = this.boards[i];
         var $item = $items.eq(i);
@@ -197,6 +211,13 @@
         } else {
           $item.removeClass('hide');
         }
+      }
+    },
+    success: function() {
+      if (this.turn === 0) {
+        alert('黑方胜利');
+      } else {
+        alert('红方胜利');
       }
     }
   });

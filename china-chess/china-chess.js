@@ -2,6 +2,7 @@ function ChinaChess(options) {
   this.count = 90;
   this.draw = options.draw;
   this.init = options.init;
+  this.success = options.success;
 }
 
 ChinaChess.prototype = {
@@ -156,6 +157,10 @@ ChinaChess.prototype = {
   stop: function() {
     this.isStart = false;
   },
+  restart: function() {
+    this.stop();
+    this.start();
+  },
   // 单击i棋子
   click: function(i) {
     var item = this.boards[i];
@@ -185,11 +190,6 @@ ChinaChess.prototype = {
         if (this.isValid(i)) {
           // 棋盘i位置的值
           var _item = this.chesses[i];
-          // 是空位置
-          if (_item !== undefined) {
-            // 把对应棋子吃掉
-            this.boards[_item].disabled = true;
-          }
           // 更新棋盘i位置的值为当前棋子
           this.chesses[i] = this.current;
           // 更新棋盘当前位置为空
@@ -203,6 +203,15 @@ ChinaChess.prototype = {
             this.turn = 1;
           } else {
             this.turn = 0;
+          }
+          // 是空位置
+          if (_item !== undefined) {
+            // 把对应棋子吃掉
+            this.boards[_item].disabled = true;
+            if (this.boards[_item].type === 0) {
+              this.isStart = false;
+              this.success();
+            }
           }
           this.draw();
           return true;
